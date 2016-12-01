@@ -211,7 +211,7 @@
     //Convert the IP Address and hostname values to their C equivalents
     struct in_addr addr;
     inet_aton([self.ipAddress cStringUsingEncoding:NSASCIIStringEncoding], &addr);
-    const char *hostName = [self.hostName cStringUsingEncoding:NSUTF8StringEncoding];
+    const char *hostName = self.hostName ? [self.hostName cStringUsingEncoding:NSUTF8StringEncoding] : "";
     
     //Attempt a connection
     NSInteger result = smb_session_connect(session, hostName, addr.s_addr, SMB_TRANSPORT_TCP);
